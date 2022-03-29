@@ -47,9 +47,9 @@
                     success: function(response){
                             let fortune_txt = response['fortune'];
                             let temp_html = ''
-                            // while (fortune_txt.length > 40){
-                            //     fortune_text();
-                            // }
+                            while (fortune_txt.length > 220){
+                                 fortune_text();
+                            }
                             // if (fortune_txt.length < 80){
                             temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
                             
