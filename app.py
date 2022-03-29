@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from flask_jwt_extended import *
 # from flask_wtf.csrf import CSRFProtect
+from flask_bcrypt import Bcrypt
 from pymongo import MongoClient
 import datetime
 # from bson.objectid import ObjectId
@@ -10,9 +11,6 @@ app = Flask(__name__)
 client = MongoClient('localhost', 27017)
 # client = MongoClient('mongodb://suyeon:tndus7988@3.36.39.129',27017)
 db = client.dbFortune
-
-app.secret_key = b'1234wqerasdfzxcv'
-
 
 ## HTML pages
 @app.route('/')
@@ -45,6 +43,14 @@ def myPage():
 def signIn_btn():
    return render_template('signIn.html')
 
+
+# PW 암호화
+## app.secret_key = b'1234wqerasdfzxcv'
+app.config['SECRET_KEY'] = 'galhg2ilh6safbkj'
+app.config['BCRYPT_LEVEL'] = 10
+
+bcrypt = Bcrypt(app)
+
 # 회원가입
 @app.route('/signIn', methods=['GET', 'POST'])
 def signIn():
@@ -70,9 +76,11 @@ def signIn():
         elif password != re_password:
             return jsonify({'result' : 'fail', 'msg' : "pw error"})
         else:  # 모두 입력이 정상적으로 되었다면 밑에명령실행(DB에 입력됨)
-            userinfo = {'user_id': userid, 'user_name': username, 'user_pwd': password }
+            pw_hash = bcrypt.generate_password_hash('password')
+            userinfo = {'user_id': userid, 'user_name': username, 'user_pwd': pw_hash }
             db.users.insert_one(userinfo)
             return jsonify({'result' : "success"})
+
 
 
 # 로그인
@@ -82,11 +90,15 @@ def login():
    userid = request.form['userid']
    password = request.form['password']
 
-   user = db.users.find_one({'user_id': userid}, {'user_pwd': password})
-   if user is None:
+   # user = db.users.find_one({'user_id': userid}, {'user_pwd': password})
+   user = db.users.find_one({'user_id': userid})
+   pw_check = bcrypt.check_password_hash(user['user_pwd'], 'password')
+
+   if (user is None) or (pw_check is False):
       return jsonify({'result' : 'fail'})
    else:
       session['userid'] = userid
+      # session['username'] = user['user_name']
       return jsonify({'result' : "success"})
 
 
