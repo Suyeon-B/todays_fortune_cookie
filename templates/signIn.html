@@ -24,10 +24,46 @@
 
 
         <title>오늘의 포춘쿠키🥠 </title>
+        <script>
+            // 사용자에게 id, pw, name을 입력받아 회원가입을 진행합니다.
+            function signIn() {
+                let userid = $("#id_form").val();
+                let password = $("#pw_form").val();
+                let re_password = $("#repw_form").val();
+                let username = $("#name_form").val();
+
+                $.ajax({
+                    type: "POST", 
+                    url: "/signIn", 
+                    data: { userid: userid, password: password, re_password: re_password, username: username}, 
+                    success: function (response) { 
+                        if (response["result"] == "success") {
+                            alert("회원가입 완료!");
+                        } else if (response["result"] == "fail") {
+                            if (response['msg'] == "alreay exist"){
+                                alert("이미 있는 ID 입니당~!ㅠㅠ");
+                            } else if (response['msg'] == "fill error"){
+                                alert("빈 칸 없이 작성해주세용!");
+                            } else if (response['msg'] == "pw error"){
+                                alert("입력하신 비밀번호들이 달라용ㅠㅠ");
+                            }
+                        }
+                    }
+                })
+            }
+
+        </script>
+
     </head>
     <body>
         <button type="button" class="play_btn" onClick="location.href='/'">home</button>
+        <div class="signIn_form">
+            <input id="id_form" class="form-control">
+            <input id="pw_form" class="form-control">
+            <input id="repw_form" class="form-control">
+            <input id="name_form" class="form-control">
+        </div>
         <button type="button" class="play_btn" onClick="location.href='/login'">로그인 버튼 자리</button>
-        <button type="button" class="play_btn" onClick="location.href='/signIn'">회원가입 버튼 자리</button>
+        <button type="button" class="play_btn" onClick="signIn()">회원가입(완료) 버튼 자리</button>
     </body>
 </html>
