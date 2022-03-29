@@ -24,6 +24,16 @@
 
 
     <title>오늘의 포춘쿠키🥠 </title>
+    <script>
+        // 이미 login한 사용자일 때
+        // myPage로 이동
+        $(document).ready(function(){
+            if ("{{session[userid]}}" != ""){
+                location.href="/myPage";
+            }
+        })
+
+    </script>
 
 </head>
 

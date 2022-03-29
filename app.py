@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from flask_jwt_extended import *
 # from flask_wtf.csrf import CSRFProtect
 from pymongo import MongoClient
@@ -11,6 +11,9 @@ client = MongoClient('localhost', 27017)
 # client = MongoClient('mongodb://suyeon:tndus7988@3.36.39.129',27017)
 db = client.dbFortune
 
+app.secret_key = b'1234wqerasdfzxcv'
+
+
 ## HTML pages
 @app.route('/')
 def home():
@@ -18,6 +21,8 @@ def home():
 
 @app.route('/welcome')
 def welcome():
+   if 'userid' in session:
+      return redirect(url_for('logined'))
    return render_template('welcome.html')
 
 @app.route('/login_btn')
@@ -81,13 +86,15 @@ def login():
    if user is None:
       return jsonify({'result' : 'fail'})
    else:
-      return jsonify({'result' : "success", 'user_id': userid})
+      session['userid'] = userid
+      return jsonify({'result' : "success"})
 
 
 # 로그아웃
-@app.route('/logout', methods=['POST'])
+@app.route('/logout')
 def logout():
-    return render_template('home.html')
+   session.pop('userid', None)
+   return redirect('/')
 
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)

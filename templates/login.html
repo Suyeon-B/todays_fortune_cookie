@@ -41,25 +41,12 @@
                         if (response["result"] == "fail") {
                             alert("서버 오류!")
                         } else {
-                            // logined(userid);
                             location.href="/logined";
                             alert("로그인 완료!");
                         }
                     }
                 })
             }
-            // function logined(userid) {
-            //     $.ajax({
-            //         type: "POST", 
-            //         url: "/logined", 
-            //         data: {userid: userid}, 
-            //         success: function (response) { 
-            //             if (response["result"] == "success") {
-            //                 alert("목록 불러오기 성공!")
-            //             }
-            //         }
-            //     })
-            // }
 
         </script>
 
