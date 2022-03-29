@@ -24,10 +24,40 @@
 
 
         <title>오늘의 포춘쿠키🥠 </title>
+
+        <!-- style -->
+        <style type="text/css"></style>
+        <script>
+            // 사용자에게 id, pw를 입력받아 로그인을 진행합니다.
+            function login() {
+                let userid = $("#id_form").val();
+                let password = $("#pw_form").val();
+
+                $.ajax({
+                    type: "POST", 
+                    url: "/login", 
+                    data: { userid: userid, password: password }, 
+                    success: function (response) { 
+                        if (response["result"] == "fail") {
+                            alert("서버 오류!")
+                        } else {
+                            location.href="/logined";
+                            alert("로그인 완료!");
+                        }
+                    }
+                })
+            }
+
+        </script>
+
     </head>
     <body>
         <button type="button" class="play_btn" onClick="location.href='/'">home</button>
-        <button type="button" class="play_btn" onClick="location.href='/logined'">로그인 버튼 자리</button>
+        <div class="login_form">
+            <input id="id_form" class="form-control">
+            <input id="pw_form" class="form-control">
+        </div>
+        <button type="button" class="play_btn" onClick="login()">로그인(완료) 버튼 자리</button>
         <button type="button" class="play_btn" onClick="location.href='/signIn'">회원가입 버튼 자리</button>
     </body>
 </html>
