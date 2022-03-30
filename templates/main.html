@@ -35,16 +35,26 @@
         
         <script>
             $(document).ready(function(){
-                fortune_text();
+                fortune_check();
+                
+                if ("{{session[userid]}}" != ""){
+                    location.href="/myPage";
+                }
+
 
                 $("#fortune_save").on('click', function(){
                     let myToken = $.cookie('myToken')
                     let fortune = $("#fortune_text").text()
                     
+                    var con_firm = confirm("저장하시겠습니까?")
+                    if(con_firm == false){
+                        
+                    }
+
                     $.ajax({
                         type: "post",
                         url: "/save",
-                        data: {fortune: fortune, myToken:myToken},
+                        data: {fortune: fortune, myToken: myToken},
                         success: function(data){
                             window.location.href = "/myPage"
                         }
@@ -53,7 +63,7 @@
                     
                 });
             })
-
+        
             function fortune_text() {
                 $('#fortune_text').empty();
                 $.ajax({
@@ -76,7 +86,26 @@
                         }
                 })
             }
-        
+
+            //포춘쿠키 오늘 열었는지 체크
+            function fortune_check(){
+                $.ajax({
+                    type: "GET",
+                    url: "/fortune_check",
+                    data: {},
+                    success: function(response){
+                        if(response.result == 'success'){
+                            //안열었으면 현재 시간 DB 저장 및 fortune_text() 실행
+                            fortune_text();
+                        }else{
+                            //열었으면 logined 로 이동
+                            alert(response.msg);
+                            location.href="/logined";
+                        }
+                    }
+                });
+            }
+
             function go_back() {
                 location.href="/logined";
             }
@@ -88,11 +117,12 @@
 
         <button type="button" class="btn home_btn main" onClick="location.href='/'"></button>
         <button type="button" class="btn go_back_btn main" onClick="go_back()"></button>
-        <div class="fortune_box" id="fortune_text"></div>
+        <div class="fortune_text" id="fortune_text"></div>
         
         <button type="button" class="btn save_btn" id="fortune_save"></button>
 
         <!-- papago api 구현 후 활성화 -->
-        <!-- <button type="button" class="btn translate_btn">번역하기</button> -->
+        <!-- <button type="button" class="btn translate_btn" id="translate_btn" onClick="papago()">papago 테스트</button>
+        <div class="fortune_text" id="fortune_text_eng"></div> -->
     </body>
 </html>

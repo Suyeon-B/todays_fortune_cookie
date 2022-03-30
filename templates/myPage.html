@@ -39,7 +39,7 @@
     <body>
         <div>마이페이지 - 저장한 목록이 나옴</div>
         {% for my in my_fortune %}
-        <li> {{my}}</li>
+        <li><a href="/detail?postId_give={{my._id}}"> {{my.fortune}} </a></li>
         {% endfor %}
 
         <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2b96c462-1d57-4d1d-840f-e05760612177/4_myPage.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220330%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220330T074642Z&X-Amz-Expires=86400&X-Amz-Signature=d6626c7ecd39bbbb8da155df9c35efd766c288ec8925846084638e5606fc0e6a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%224_myPage.jpg%22&x-id=GetObject" id="bg" alt="">
@@ -48,5 +48,6 @@
         <button type="button" class="btn go_back_btn myPage" onClick="go_back()"></button>
         <!-- 목록 들어가는 거 구현해아함
         페이징 구현해야함 -->
+
     </body>
 </html>
