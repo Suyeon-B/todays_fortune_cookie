@@ -54,6 +54,7 @@
                 });
             })
 
+
             function fortune_text() {
                 $('#fortune_text').empty();
                 $.ajax({
@@ -76,7 +77,40 @@
                         }
                 })
             }
+
         
+//             function papago(){
+//                 $.ajax({
+//                     type: "GET",
+//                     url: "http://yerkee.com/api/fortune",
+//                     data: {},
+//                     success: function(response){
+//                             fortune_txt = '';
+//                             fortune_txt = response['fortune'];
+// <<<<<<< HEAD
+//                             console.log(fortune_txt)
+//                             let temp_html = ``
+                            
+//                             if (fortune_txt.length > 132){
+//                                 fortune_text();
+//                             } 
+//                             temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
+// =======
+//                             let temp_html = ''
+                            
+//                             if (fortune_txt.length < 132){
+//                                 temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
+//                                 $('#fortune_text').append(temp_html);
+//                                 return
+//                             }
+//                             fortune_text();
+// >>>>>>> 78cc0c0bfea619e0717d0188ff3d39e9cb845cf0
+                            
+                                                        
+//                         }
+//                 })
+//             }
+
             function go_back() {
                 location.href="/logined";
             }
