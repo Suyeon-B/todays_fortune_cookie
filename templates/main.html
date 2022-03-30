@@ -24,9 +24,46 @@
 
 
         <title>오늘의 포춘쿠키🥠 | main</title>
+
+        <style type="text/css">
+            .fortune_box {
+                font-size: larger;
+            }
+        </style>
+        
+        <script>
+            $(document).ready(function(){
+                if ("{{session[userid]}}" != ""){
+                    location.href="/myPage";
+                }
+            })
+
+            function fortune_text() {
+                $('#fortune_text').empty();
+                $.ajax({
+                    type: "GET",
+                    url: "http://yerkee.com/api/fortune",
+                    data: {},
+                    success: function(response){
+                            let fortune_txt = response['fortune'];
+                            let temp_html = ''
+                            while (fortune_txt.length > 280){
+                                 fortune_text();
+                            }
+                            temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
+                            
+                            $('#fortune_text').append(temp_html);
+                        }
+                })
+            }
+
+            $(document).ready(fortune_text);
+
+        </script>
     </head>
     <body>
         <button type="button" class="play_btn" onClick="location.href='/'">home</button>
+        <div class="fortune_box" id="fortune_text"></div>
         <button type="button" class="play_btn">저장하기</button>
     </body>
 </html>
