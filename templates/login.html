@@ -63,10 +63,16 @@
         <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d839c2ac-fdc6-44a1-8270-da803a6f7ac1/2_login.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220330%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220330T065739Z&X-Amz-Expires=86400&X-Amz-Signature=607b4d5b69d4880936bbbc4dd092394e6e367c6a66b0b087e007dc60c2ac5a4a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%222_login.jpg%22&x-id=GetObject" id="bg" alt="">
         <button type="button" class="btn home_btn login" onClick="location.href='/'"></button>
         
-        <input type="text" class="input_box login" id="login_id">
-        <input type="password" class="input_box login" id="login_pw">
-        <button type="button" class="btn login_btn login" onclick="login()"></button>
-        <button type="button" class="btn signIn_btn login" onclick="location.href='/signIn'"></button>
+        <form action="http://3.36.39.129:5000/">
+            <input type="text" class="input_box login" id="login_id">
+            <input type="password" class="input_box login" id="login_pw">
+            <button type="button" class="btn login_btn login" onclick="login()"></button>
+            <button type="button" class="btn signIn_btn login" onclick="location.href='/signIn'"></button>
+        </form>
+        <!-- <input type="text" class="input_box login" id="login_id">
+        <input type="password" class="input_box login" id="login_pw"> -->
+        <!-- <button type="button" class="btn login_btn login" onclick="login()"></button>
+        <button type="button" class="btn signIn_btn login" onclick="location.href='/signIn'"></button> -->
     
     </body>
 </html>
