@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, jsonify, redirect, url_for
+from bson.objectid import ObjectId
 import hashlib
 import jwt
 from pymongo import MongoClient
@@ -82,8 +83,9 @@ def myPage():
    my_fortune = []
 
    for fortuneLists in fortuneList:
-      my_fortune.append(fortuneLists['fortune'])
+      my_fortune.append(fortuneLists)
       
+   print(my_fortune)
 
    return render_template('myPage.html', my_fortune = my_fortune)
 
@@ -130,7 +132,13 @@ def save():
    myToken = request.form['myToken']
    payload = jwt.decode(myToken, SECRET_KEY, algorithms=['HS256'])['id']
    
-   fortuneInfo = {'user_id' : payload, 'fortune' : fortune}
+   today = datetime.datetime.now()
+   print(today)
+   end_date = datetime.datetime(2022, 8, 11)
+   print(end_date)
+   d_day = end_date - today
+  
+   fortuneInfo = {'user_id' : payload, 'fortune' : fortune, 'd_day' : d_day.days}
    db.saveFortune.insert_one(fortuneInfo)
    return jsonify({'result' : "success"})
 
@@ -178,6 +186,13 @@ def d_day():
    #총 일수
    all_day = end_date - start_date
    return jsonify({'d_day' : d_day.days, 'all_day' : all_day.days})
+
+@app.route('/detail')
+def detail():
+   postid_receive = request.args.get('postId_give')
+   fortune = db.saveFortune.find_one({'_id': ObjectId(postid_receive)})
+   print(fortune)
+   return render_template('detail.html', fortune = fortune)
 
 @app.route('/fortune_check', methods=['GET'])
 def fortune_check():
