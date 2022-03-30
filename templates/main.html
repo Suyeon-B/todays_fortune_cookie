@@ -64,21 +64,23 @@
                             fortune_txt = '';
                             fortune_txt = response['fortune'];
                             console.log(fortune_txt)
+                            console.log(1)
                             let temp_html = ''
                             
-                            if (fortune_txt.length > 132){
-                                fortune_text();
+                            if (fortune_txt.length < 132){
+                                console.log(2)
+                                temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
+                                $('#fortune_text').append(temp_html);
+                                return
                             }
-                            temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
+                            console.log(3)
+                            fortune_text();
                             
-                            $('#fortune_text').append(temp_html);
+                                                        
                         }
                 })
             }
         
-
-            $(document).ready(fortune_text);
-
             function go_back() {
                 location.href="/logined";
             }
