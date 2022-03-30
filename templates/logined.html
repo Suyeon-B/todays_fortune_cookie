@@ -18,17 +18,30 @@
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
             crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
         <!-- 구글폰트 -->
         <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
 
         <title>오늘의 포춘쿠키🥠 </title>
+        <script>
+            function logout() {
+                $.removeCookie('myToken')
+                window.location.href = "/"
+            }
+        </script>
+
     <body>
-        <h4>{{session['userid']}} 님 반가워용!</h4>
+        <h4>{{userName}} 님 반가워용!</h4>
         <button type="button" class="play_btn" onClick="location.href='/'">home</button>
         <button type="button" class="play_btn" onClick="location.href='/myPage'">내 쿠키 목록</button>
         <button type="button" class="play_btn" onClick="location.href='/main'">오늘의 쿠키 🥠</button>
-        <button type="button" class="play_btn" onClick="location.href='/logout'">로그아웃</button>
+        <button type="button" class="play_btn" onClick="logout()">로그아웃</button>
+        <!--<h4>{{session['userid']}} 님 반가워용!</h4> 
+        <button type="button" class="play_btn" onClick="location.href='/'">home</button>
+        <button type="button" class="play_btn" onClick="location.href='/myPage'">내 쿠키 목록</button>
+        <button type="button" class="play_btn" onClick="location.href='/main'">오늘의 쿠키 🥠</button>
+        <button type="button" class="play_btn" onClick="location.href='/logout'">로그아웃</button> -->
     </body>
 </html>
