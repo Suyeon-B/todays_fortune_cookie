@@ -64,11 +64,11 @@
                             fortune_txt = '';
                             fortune_txt = response['fortune'];
                             console.log(fortune_txt)
-                            let temp_html = ''
+                            let temp_html = ``
                             
                             if (fortune_txt.length > 132){
                                 fortune_text();
-                            }
+                            } 
                             temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
                             
                             $('#fortune_text').append(temp_html);
