@@ -1,0 +1,204 @@
+* {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+#bg {
+    position: fixed;
+    z-index: 0;
+    width: 1920px;
+    height: 1080px;
+}
+
+.fortune_box {
+    font-size: larger;
+}
+
+.btn, .input_box, h3 {
+    /* position: relative; */
+    position: fixed;
+    z-index: 1;
+}
+
+button.btn.play_btn.home {
+    left: 1075px;
+    top: 715px;
+    height: 90px;
+    width: 100px;
+}
+
+button.btn.home_btn {
+    left: 1620px;
+    top: 90px;
+    height: 90px;
+    width: 100px;
+}
+
+button.btn.myPage_btn {
+    left: 680px;
+    top: 480px;
+    height: 90px;
+    width: 500px;
+}
+
+button.btn.cookie_btn {
+    left: 560px;
+    top: 630px;
+    height: 180px;
+    width: 700px;
+}
+
+button.btn.logout_btn {
+    left: 800px;
+    top: 860px;
+    height: 70px;
+    width: 230px;
+}
+
+h3 {
+    left: 750px;
+    top: 190px;
+    height: 70px;
+    width: 230px;
+    font-size: 150px;
+}
+
+button.btn.go_back_btn.myPage {
+    left: 1600px;
+    top: 90px;
+    height: 90px;
+    width: 100px;
+}
+
+button.btn.home_btn.myPage {
+    left: 180px;
+    top: 70px;
+}
+
+button.btn.home_btn.main {
+    left: 170px;
+}
+
+button.btn.save_btn {
+    left: 1460px;
+    top: 350px;
+    width: 220px;
+    height: 50px;
+}
+
+button.btn.go_back_btn.main {
+    left: 1640px;
+    top: 80px;
+    height: 90px;
+    width: 100px;
+}
+
+#fortune_text {
+    position: fixed;
+    z-index: 1;
+    width: 900px;
+    height: 200px;
+    left: 500px;
+    top: 380px;
+    font-size: 50px;
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+button.btn.signIn_btn {
+    left: 800px;
+    top: 760px;
+    height: 90px;
+    width: 300px;
+}
+
+button.btn.login_btn {
+    left: 700px;
+    top: 580px;
+    height: 110px;
+    width: 520px;
+}
+
+button.btn.home_btn.welcome {
+    top: 170px;
+    left: 1550px;
+}
+
+input#login_id {
+    position: fixed;
+    left: 770px;
+    top: 343px;
+    width: 700px;
+    height: 70px;
+    border-style: hidden;
+}
+
+input#login_pw {
+    position: fixed;
+    left: 770px;
+    top: 484px;
+    width: 700px;
+    height: 48px;
+    border-style: hidden;
+}
+
+button.btn.login_btn.login {
+    top: 650px;
+    width: 480px;
+    left: 730px;
+}
+
+button.btn.signIn_btn.login {
+    left: 240px;
+    width: 150px;
+    top: 730px;
+    height: 60px;
+}
+
+button.btn.home_btn.login {
+    top: 150px;
+}
+
+.input_box.signIn {
+    left: 720px;
+    width: 600px;
+    height: 60px;
+    border-style: hidden;
+}
+
+.input_box.signIn#name_form {
+    top: 590px;
+}
+
+.input_box.signIn#repw_form {
+    top: 460px;
+}
+
+.input_box.signIn#pw_form {
+    top: 343px;
+}
+
+.input_box.signIn#id_form {
+    top: 221px;
+}
+
+button.btn.login_btn.signIn {
+    top: 390px;
+    left: 1650px;
+    width: 130px;
+    height: 50px;
+}
+
+button.btn.signIn_btn.signIn {
+    left: 730px;
+    top: 760px;
+    height: 90px;
+    width: 300px;
+}
+
+button.btn.home_btn.signIn {
+    top: 140px;
+}
+
+.login, .signIn {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 35px;
+}

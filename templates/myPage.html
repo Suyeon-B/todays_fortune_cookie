@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
             integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+        <!-- CSS 연결 -->
+        <link rel="stylesheet" type="text/css" href = "static/css/my_style.css">
+
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -20,15 +23,30 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
         <!-- 구글폰트 -->
-        <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet"> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
-
-        <title>오늘의 포춘쿠키🥠 </title>
+        <title>오늘의 포춘쿠키🥠 | myPage </title>
+        <script>
+            function go_back() {
+                location.href="/logined";
+            }
+        </script>
+        
     </head>
     <body>
         <div>마이페이지 - 저장한 목록이 나옴</div>
         {% for my in my_fortune %}
         <li> {{my}}</li>
         {% endfor %}
+
+        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2b96c462-1d57-4d1d-840f-e05760612177/4_myPage.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220330%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220330T074642Z&X-Amz-Expires=86400&X-Amz-Signature=d6626c7ecd39bbbb8da155df9c35efd766c288ec8925846084638e5606fc0e6a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%224_myPage.jpg%22&x-id=GetObject" id="bg" alt="">
+
+        <button type="button" class="btn home_btn myPage" onClick="location.href='/'"></button>
+        <button type="button" class="btn go_back_btn myPage" onClick="go_back()"></button>
+        <!-- 목록 들어가는 거 구현해아함
+        페이징 구현해야함 -->
     </body>
 </html>

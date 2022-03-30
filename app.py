@@ -16,10 +16,6 @@ def home():
 
 @app.route('/welcome')
 def welcome():
-   # if 'userid' in session:
-   #    return redirect(url_for('logined'))
-   # return render_template('welcome.html')
-
    # 상호쓰 갖다 붙임
    token_receive = request.cookies.get('myToken')
    if token_receive is not None:
@@ -90,6 +86,7 @@ def myPage():
 def signIn_btn():
    return render_template('signIn.html')
 
+
 # 회원가입
 @app.route('/signIn', methods=['GET', 'POST'])
 def signIn():
@@ -131,37 +128,6 @@ def save():
    fortuneInfo = {'user_id' : payload, 'fortune' : fortune}
    db.saveFortune.insert_one(fortuneInfo)
    return jsonify({'result' : "success"})
-
-
-
-
-
-
-# 로그인
-# @app.route('/login', methods=['POST'])
-# def login():
-
-#    userid = request.form['userid']
-#    password = request.form['password']
-
-#    # user = db.users.find_one({'user_id': userid}, {'user_pwd': password})
-#    user = db.users.find_one({'user_id': userid})
-#    pw_check = bcrypt.check_password_hash(user['user_pwd'], 'password')
-
-#    if (user is None) or (pw_check is False):
-#       return jsonify({'result' : 'fail'})
-#    else:
-#       session['userid'] = userid
-#       # session['username'] = user['user_name']
-#       return jsonify({'result' : "success"})
-
-
-# 로그아웃
-# @app.route('/logout')
-# def logout():
-#    session.pop('userid', None)
-#    return redirect('/')
-
 
 
 if __name__ == '__main__':

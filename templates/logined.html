@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
             integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+        <!-- CSS 연결 -->
+        <link rel="stylesheet" type="text/css" href = "static/css/my_style.css">
+        
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -21,10 +24,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
         <!-- 구글폰트 -->
-        <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet"> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+        
 
+        <title>오늘의 포춘쿠키🥠 | logined</title>
 
-        <title>오늘의 포춘쿠키🥠 </title>
         <script>
             function logout() {
                 $.removeCookie('myToken')
@@ -33,15 +40,11 @@
         </script>
 
     <body>
-        <h4>{{userName}} 님 반가워용!</h4>
-        <button type="button" class="play_btn" onClick="location.href='/'">home</button>
-        <button type="button" class="play_btn" onClick="location.href='/myPage'">내 쿠키 목록</button>
-        <button type="button" class="play_btn" onClick="location.href='/main'">오늘의 쿠키 🥠</button>
-        <button type="button" class="play_btn" onClick="logout()">로그아웃</button>
-        <!--<h4>{{session['userid']}} 님 반가워용!</h4> 
-        <button type="button" class="play_btn" onClick="location.href='/'">home</button>
-        <button type="button" class="play_btn" onClick="location.href='/myPage'">내 쿠키 목록</button>
-        <button type="button" class="play_btn" onClick="location.href='/main'">오늘의 쿠키 🥠</button>
-        <button type="button" class="play_btn" onClick="location.href='/logout'">로그아웃</button> -->
+        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fa360c21-55ca-46df-a862-9a56de30860c/3_logined.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220330%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220330T074141Z&X-Amz-Expires=86400&X-Amz-Signature=e574c2b7880be6a725b8b6a644db418d30b7098b52a2bc2e36e6b50ceb45659c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%223_logined.jpg%22&x-id=GetObject" id="bg" alt="">
+        <h3>{{userName}}</h3>
+        <button type="button" class="btn home_btn logined" onClick="location.href='/'"></button>
+        <button type="button" class="btn myPage_btn logined" onClick="location.href='/myPage'"></button>
+        <button type="button" class="btn cookie_btn logined" onClick="location.href='/main'"></button>
+        <button type="button" class="btn logout_btn logined" onClick="logout()"></button>
     </body>
 </html>
