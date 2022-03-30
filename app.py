@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for
+from flask import Flask, render_template, request, session, jsonify, redirect, url_for
 import hashlib
 import jwt
 from pymongo import MongoClient
@@ -37,6 +37,8 @@ def login():
    if request.method == 'POST':
       user_id = request.form['id_input']
       user_pw = request.form['pw_input']
+
+      session['userid'] = user_id
 
       user_pw_hash = hashlib.sha256(user_pw.encode("utf-8")).hexdigest()
       result = db.users.find_one({'user_id' : user_id, 'user_pwd' : user_pw_hash})
