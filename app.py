@@ -3,6 +3,8 @@ import hashlib
 import jwt
 from pymongo import MongoClient
 import datetime
+# import urllib.request
+# import json
 
 app = Flask(__name__)
 client = MongoClient('localhost', 27017)
@@ -129,6 +131,34 @@ def save():
    db.saveFortune.insert_one(fortuneInfo)
    return jsonify({'result' : "success"})
 
+
+# @app.route('/translate', methods=['POST'])
+# def translate():
+#    fortune_eng = request.form["fortune_eng"]
+#    fortune_eng = "hi nice to meet you"
+#    client_id = "dbXYNxcslKrY4UlMw7h8"    # ■■ ID 설정 ■■
+#    client_secret = "WjxS3mgM8h"   # ■■ PW 설정 ■■
+#    encText = urllib.parse.quote(fortune_eng)
+#    data = "source=en&target=ko&text=" + encText
+#    url = "https://openapi.naver.com/v1/papago/n2mt"
+#    request = urllib.request.Request(url)
+#    request.add_header("X-Naver-Client-Id",client_id)
+#    request.add_header("X-Naver-Client-Secret",client_secret)
+#    response = urllib.request.urlopen(request, data=data.encode("utf-8"))
+#    rescode = response.getcode()
+#    if(rescode==200):
+#       response_body = response.read()
+#       translated_result = response_body.decode("utf-8")
+#       temp = json.loads(translated_result)
+#       translated_text = temp['message']['result']['translatedText']
+#       return jsonify({"result" : "success", "translated_text" :translated_text})
+#    else:
+#       Error_Code = rescode
+#       # print(“Error Code:” + rescode)
+#       # fortuneInfo = {‘fortune’ : fortune}
+#       # db.saveFortune.insert_one(fortuneInfo)
+#       return jsonify({"result" : "fail", "Error_Code": Error_Code})
+      
 
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
