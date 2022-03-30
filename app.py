@@ -8,8 +8,8 @@ import datetime
 # import json
 
 app = Flask(__name__)
-client = MongoClient('localhost', 27017)
-# client = MongoClient('mongodb://suyeon:tndus7988@3.36.39.129',27017)
+# client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://suyeon:tndus7988@3.36.39.129',27017)
 db = client.dbFortune
 
 ## HTML pages
