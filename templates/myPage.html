@@ -27,5 +27,8 @@
     </head>
     <body>
         <div>마이페이지 - 저장한 목록이 나옴</div>
+        {% for my in my_fortune %}
+        <li> {{my}}</li>
+        {% endfor %}
     </body>
 </html>

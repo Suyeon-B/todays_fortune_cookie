@@ -18,6 +18,7 @@
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
             crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
         <!-- 구글폰트 -->
         <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
@@ -33,9 +34,23 @@
         
         <script>
             $(document).ready(function(){
-                if ("{{session[userid]}}" != ""){
-                    location.href="/myPage";
-                }
+                fortune_text();
+
+                $("#fortune_save").on('click', function(){
+                    let myToken = $.cookie('myToken')
+                    let fortune = $("#fortune_text").text()
+                    
+                    $.ajax({
+                        type: "post",
+                        url: "/save",
+                        data: {fortune: fortune, myToken:myToken},
+                        success: function(data){
+                            window.location.href = "/myPage"
+                        }
+                        
+                    })
+                    
+                });
             })
 
             function fortune_text() {
@@ -46,9 +61,11 @@
                     data: {},
                     success: function(response){
                             let fortune_txt = response['fortune'];
+                            console.log(fortune_txt)
                             let temp_html = ''
-                            while (fortune_txt.length > 280){
-                                 fortune_text();
+                            if (fortune_txt.length > 280){
+                                fortune_txt = '';
+                                fortune_text();
                             }
                             temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
                             
@@ -57,13 +74,13 @@
                 })
             }
 
-            $(document).ready(fortune_text);
+
 
         </script>
     </head>
     <body>
         <button type="button" class="play_btn" onClick="location.href='/'">home</button>
         <div class="fortune_box" id="fortune_text"></div>
-        <button type="button" class="play_btn">저장하기</button>
+        <button type="button" class="play_btn" id="fortune_save">저장하기</button>
     </body>
 </html>
