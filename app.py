@@ -1,13 +1,8 @@
-import os
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
-from flask_jwt_extended import *
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import hashlib
 import jwt
-# from flask_wtf.csrf import CSRFProtect
-from flask_bcrypt import Bcrypt
 from pymongo import MongoClient
 import datetime
-# from bson.objectid import ObjectId
 
 app = Flask(__name__)
 client = MongoClient('localhost', 27017)
@@ -86,10 +81,10 @@ def signIn_btn():
 
 
 # PW 암호화
-app.config['SECRET_KEY'] = 'galhg2ilh6safbkj'
-app.config['BCRYPT_LEVEL'] = 10
+# app.config['SECRET_KEY'] = 'galhg2ilh6safbkj'
+# app.config['BCRYPT_LEVEL'] = 10
 
-bcrypt = Bcrypt(app)
+# bcrypt = Bcrypt(app)
 
 # 회원가입
 @app.route('/signIn', methods=['GET', 'POST'])
