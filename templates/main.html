@@ -54,8 +54,9 @@
                 });
             })
 
-            function fortune_text() {
-                $('#fortune_text').empty();
+
+        
+            function papago(){
                 $.ajax({
                     type: "GET",
                     url: "http://yerkee.com/api/fortune",
@@ -75,7 +76,6 @@
                         }
                 })
             }
-        
 
             $(document).ready(fortune_text);
 
