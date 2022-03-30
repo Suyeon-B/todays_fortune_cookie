@@ -47,10 +47,9 @@
                     success: function(response){
                             let fortune_txt = response['fortune'];
                             let temp_html = ''
-                            while (fortune_txt.length > 220){
+                            while (fortune_txt.length > 280){
                                  fortune_text();
                             }
-                            // if (fortune_txt.length < 80){
                             temp_html = `<div class="fortune_text id="fortune_text">${fortune_txt}</div>`
                             
                             $('#fortune_text').append(temp_html);
@@ -64,9 +63,7 @@
     </head>
     <body>
         <button type="button" class="play_btn" onClick="location.href='/'">home</button>
-        <div class="fortune_box" id="fortune_text">
-            <!-- <div class="fortune_text" id="fortune_text"></div> -->
-        </div>
+        <div class="fortune_box" id="fortune_text"></div>
         <button type="button" class="play_btn">저장하기</button>
     </body>
 </html>
