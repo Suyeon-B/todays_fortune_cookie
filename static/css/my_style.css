@@ -7,6 +7,7 @@
     z-index: 0;
     width: 1920px;
     height: 1080px;
+    top: 0;
 }
 
 .fortune_box {
@@ -201,4 +202,53 @@ button.btn.home_btn.signIn {
 .login, .signIn {
     font-family: 'Do Hyeon', sans-serif;
     font-size: 35px;
+}
+
+li {
+    position: relative;
+    z-index: 1;
+    left: 700px;
+    top: 230px;
+    max-width: 600px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jungle_baby{
+    position: fixed;
+    z-index: 10;
+    width: 1920px;
+    display: inline-block;
+    border-bottom: solid 40px;
+    bottom: 0;
+}
+
+.jungle_life_timeline{
+    display: inline-block;
+    bottom: 50px;
+    left: 200px;
+    right: 200px;
+    position: fixed;
+    font-size:40px;
+}
+
+#start_img, #end_img{
+    position: fixed;
+    bottom: 50px;
+    width: 200px;
+    height: 100px;
+}
+
+#start_img{
+    left:0;
+}
+
+#end_img{
+    right:0;
+}
+
+#d_day_img{
+    width: 200px;
+    height: 100px;
 }

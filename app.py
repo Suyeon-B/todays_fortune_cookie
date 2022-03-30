@@ -26,6 +26,7 @@ def welcome():
    return render_template('welcome.html')
 
 SECRET_KEY = 'apple'
+app.config['SECRET_KEY'] = 'galhg2ilh6safbkj'
 
 @app.route('/login_btn')
 def login_btn():
@@ -160,6 +161,46 @@ def save():
 #       # fortuneInfo = {‘fortune’ : fortune}
 #       # db.saveFortune.insert_one(fortuneInfo)
 #       return jsonify({"result" : "fail", "Error_Code": Error_Code})
+
+
+#디데이 계산
+@app.route('/d_day')
+def d_day():
+   # today = datetime.date(2022, 6, 2)
+   #오늘
+   today = datetime.date.today()
+   #시작일
+   start_date = datetime.date(2022, 3, 28)
+   #종료일
+   end_date = datetime.date(2022, 8, 11)
+   #디데이
+   d_day = end_date - today
+   #총 일수
+   all_day = end_date - start_date
+   return jsonify({'d_day' : d_day.days, 'all_day' : all_day.days})
+
+@app.route('/fortune_check', methods=['GET'])
+def fortune_check():
+   #로그인 아이디
+   token_receive = request.cookies.get('myToken')
+   payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+   userid = payload['id']
+   #오늘 날짜 YYYY-MM-DD 형식
+   today = datetime.date.today().isoformat()
+   openinfo = {'user_id' : userid, 'open_date' : today}
+   #오늘 오픈했는지 체크
+   result = db.openinfo.find_one(openinfo)
+   
+   if result is not None:
+      #오늘 오픈 했으면
+      return jsonify({'result' : 'fail', 'msg' : '너는 오늘 이미 포춘쿠키를 열었따'})
+   
+   else:
+      #오늘 오픈 안했으면
+      #오픈 날짜 저장
+      db.openinfo.insert_one(openinfo)
+      return jsonify({'result' : 'success'})
+
       
 
 if __name__ == '__main__':

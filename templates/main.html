@@ -35,7 +35,12 @@
         
         <script>
             $(document).ready(function(){
-                fortune_text();
+                fortune_check();
+                
+                if ("{{session[userid]}}" != ""){
+                    location.href="/myPage";
+                }
+
 
                 $("#fortune_save").on('click', function(){
                     let myToken = $.cookie('myToken')
@@ -53,7 +58,7 @@
                     
                 });
             })
-
+        
             function fortune_text() {
                 $('#fortune_text').empty();
                 $.ajax({
@@ -77,34 +82,57 @@
                 })
             }
 
-            // function papago() {
-            //     let fortune_eng = $("#fortune_text").text()
-            //     console.log(fortune_eng);
-                
-            //     $.ajax({
-            //         type: "POST",
-            //         url: "/translate",
-            //         data: {fortune_eng: fortune_eng},
-            //         success: function(response){
-            //             if (response["result"] == "success"){
-            //                 alert(response["translated_text"]);
-            //                 // let temp_html = `<div class="fortune_text id="fortune_text_eng">${response["translated_text"]}</div>`
-            //                 // $('#fortune_text_eng').append(temp_html);
-            //             } else {
-            //                 alert('번역 실패!');
-            //             }
-            //         }
-            //     })
-            // }
+            //포춘쿠키 오늘 열었는지 체크
+            function fortune_check(){
+                $.ajax({
+                    type: "GET",
+                    url: "/fortune_check",
+                    data: {},
+                    success: function(response){
+                        if(response.result == 'success'){
+                            //안열었으면 현재 시간 DB 저장 및 fortune_text() 실행
+                            fortune_text();
+                        }else{
+                            //열었으면 logined 로 이동
+                            alert(response.msg);
+                            location.href="/logined";
+                        }
+                    }
+                });
+            }
 
             function go_back() {
                 location.href="/logined";
             }
+            $(document).ready(function(){
+                d_day();
+            });
+            function d_day(){
+                $.ajax({
+                    type: "GET",
+                    url:"/d_day",
+                    data:{},
+                    success: function(response) {
+                        var d_day = response.d_day;
+                        $("#d_day_text").text(d_day);
+                        //총 일수
+                        var all_day = response.all_day;
+                        //진행률
+                        //25
+                        var day_per = ((all_day - d_day) / all_day) * 100;
+                        $('#d_day_img').css('margin-left', day_per + '%');
 
+                        //사진 (baby_0.PNG ~ baby_9.PNG)
+                        //25 / 10 = 2.5 -> 소숫점 버림 Math.floor() -> 2 -> /static/d_day/baby_2.png
+                        var imgId = Math.floor(day_per / 10);
+                        $('#d_day_img').attr('src', '/static/d_day/baby_' + imgId + '.jpg');
+                    }
+                })
+            }
         </script>
     </head>
     <body>
-        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b7a12106-685f-4283-8fb9-c90c2608c40a/5_main.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220330%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220330T075029Z&X-Amz-Expires=86400&X-Amz-Signature=65809a480e450a23f8ff27bb3a370dd2520ac6f6ebf7950f189f3bf1ef17a180&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%225_main.jpg%22&x-id=GetObject" id="bg" alt="">
+        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/05828ddc-b3d7-4756-aa2d-c069f8c720c3/5_main.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220330%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220330T185738Z&X-Amz-Expires=86400&X-Amz-Signature=70e08e92d302b78b364c5818bb51b3503433a3840823b98074ff0ed374528229&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%225_main.jpg%22&x-id=GetObject" id="bg" alt="">
 
         <button type="button" class="btn home_btn main" onClick="location.href='/'"></button>
         <button type="button" class="btn go_back_btn main" onClick="go_back()"></button>
@@ -112,6 +140,13 @@
         
         <button type="button" class="btn save_btn" id="fortune_save"></button>
 
+        <div class="jungle_baby">
+            <img id="start_img" alt="" src="/static/d_day/start.jpg" height="50px;">
+            <div class="jungle_life_timeline">
+                <img id="d_day_img" alt="" src="/static/d_day/baby_0.jpg" height="50px;" >D-day<font id="d_day_text"></font>
+            </div>
+            <img id="end_img" alt="" src="/static/d_day/end.jpg" height="50px;">
+        </div>
         <!-- papago api 구현 후 활성화 -->
         <!-- <button type="button" class="btn translate_btn" id="translate_btn" onClick="papago()">papago 테스트</button>
         <div class="fortune_text" id="fortune_text_eng"></div> -->
