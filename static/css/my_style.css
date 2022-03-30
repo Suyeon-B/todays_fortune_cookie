@@ -213,7 +213,27 @@ li {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 20px;
 }
+
+.saved_list{
+    margin-bottom: 58px;
+}
+
+a {
+    font-size: 40px;
+}
+
+/* a {
+    position: relative;
+    z-index: 1;
+    left: 700px;
+    top: 230px;
+    max-width: 600px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */
 
 .jungle_baby{
     position: fixed;
